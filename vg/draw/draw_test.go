@@ -56,3 +56,47 @@ func TestCrop(t *testing.T) {
 		t.Errorf(str, r1.Actions, r2.Actions)
 	}
 }
+
+func TestTile(t *testing.T) {
+	r := recorder.New(96)
+	c := NewCanvas(r, 13, 7)
+	tiles := c.Tile(2, 3, 1, 1, 1, 1, 1, 1)
+	rectangles := [][]Rectangle{
+		{
+			Rectangle{
+				Min: Point{1, 4},
+				Max: Point{4, 6},
+			},
+			Rectangle{
+				Min: Point{5, 4},
+				Max: Point{8, 6},
+			},
+			Rectangle{
+				Min: Point{9, 4},
+				Max: Point{12, 6},
+			},
+		},
+		{
+			Rectangle{
+				Min: Point{1, 1},
+				Max: Point{4, 3},
+			},
+			Rectangle{
+				Min: Point{5, 1},
+				Max: Point{8, 3},
+			},
+			Rectangle{
+				Min: Point{9, 1},
+				Max: Point{12, 3},
+			},
+		},
+	}
+	for j, row := range tiles {
+		for i, tile := range row {
+			str := "row %d col %d unexpected result: %+v != %+v"
+			if tile.Rectangle != rectangles[j][i] {
+				t.Errorf(str, j, i, tile.Rectangle, rectangles[j][i])
+			}
+		}
+	}
+}

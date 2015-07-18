@@ -5,11 +5,16 @@
 package draw
 
 import (
+	"fmt"
 	"image/color"
 	"math"
 	"strings"
 
 	"github.com/gonum/plot/vg"
+	"github.com/gonum/plot/vg/vgeps"
+	"github.com/gonum/plot/vg/vgimg"
+	"github.com/gonum/plot/vg/vgpdf"
+	"github.com/gonum/plot/vg/vgsvg"
 )
 
 // A Canvas is a vector graphics canvas along with
@@ -222,6 +227,39 @@ func New(c vg.CanvasSizer) Canvas {
 	return NewCanvas(c, w, h)
 }
 
+// NewFormattedCanvas creates a new vg.CanvasWriterTo with the specified
+// image format.
+//
+// Supported formats are:
+//
+//  eps, jpg|jpeg, pdf, png, svg, and tif|tiff.
+func NewFormattedCanvas(w, h vg.Length, format string) (vg.CanvasWriterTo, error) {
+	var c vg.CanvasWriterTo
+	switch format {
+	case "eps":
+		c = vgeps.New(w, h)
+
+	case "jpg", "jpeg":
+		c = vgimg.JpegCanvas{Canvas: vgimg.New(w, h)}
+
+	case "pdf":
+		c = vgpdf.New(w, h)
+
+	case "png":
+		c = vgimg.PngCanvas{Canvas: vgimg.New(w, h)}
+
+	case "svg":
+		c = vgsvg.New(w, h)
+
+	case "tif", "tiff":
+		c = vgimg.TiffCanvas{Canvas: vgimg.New(w, h)}
+
+	default:
+		return nil, fmt.Errorf("unsupported format: %q", format)
+	}
+	return c, nil
+}
+
 // NewCanvas returns a new (bounded) draw.Canvas of the given size.
 func NewCanvas(c vg.Canvas, w, h vg.Length) Canvas {
 	return Canvas{
@@ -292,6 +330,34 @@ func (c Canvas) Crop(minx, miny, maxx, maxy vg.Length) Canvas {
 		Canvas:    vg.Canvas(c),
 		Rectangle: Rectangle{Min: minpt, Max: maxpt},
 	}
+}
+
+// Tile returns new Canvases corresponding to the reciever canvas tiled
+// into the given number of rows and columns (row major, starting from the
+// top left corner) where t, b, l, r, h,
+// and w are the padding above, below, to the left, to the right, between rows,
+// and between columns of the tiles, respectively.
+func (c Canvas) Tile(rows, cols int, t, b, l, r, h, w vg.Length) [][]Canvas {
+	o := make([][]Canvas, rows)
+	tileH := (c.Max.Y - c.Min.Y - t - b - vg.Length(rows-1)*h) / vg.Length(rows)
+	tileW := (c.Max.X - c.Min.X - l - r - vg.Length(cols-1)*w) / vg.Length(cols)
+	for j := 0; j < rows; j++ {
+		maxy := c.Max.Y - t - vg.Length(j)*(h+tileH)
+		miny := maxy - tileH
+		o[j] = make([]Canvas, cols)
+		for i := 0; i < cols; i++ {
+			minx := c.Min.X + l + vg.Length(i)*(w+tileW)
+			maxx := minx + tileW
+			o[j][i] = Canvas{
+				Canvas: vg.Canvas(c),
+				Rectangle: Rectangle{
+					Min: Point{X: minx, Y: miny},
+					Max: Point{X: maxx, Y: maxy},
+				},
+			}
+		}
+	}
+	return o
 }
 
 // SetLineStyle sets the current line style

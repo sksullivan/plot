@@ -16,7 +16,6 @@
 package plot
 
 import (
-	"fmt"
 	"image/color"
 	"io"
 	"math"
@@ -26,10 +25,6 @@ import (
 
 	"github.com/gonum/plot/vg"
 	"github.com/gonum/plot/vg/draw"
-	"github.com/gonum/plot/vg/vgeps"
-	"github.com/gonum/plot/vg/vgimg"
-	"github.com/gonum/plot/vg/vgpdf"
-	"github.com/gonum/plot/vg/vgsvg"
 )
 
 var (
@@ -446,34 +441,11 @@ func (p *Plot) NominalY(names ...string) {
 //
 //  eps, jpg|jpeg, pdf, png, svg, and tif|tiff.
 func (p *Plot) WriterTo(w, h vg.Length, format string) (io.WriterTo, error) {
-	var c interface {
-		vg.CanvasSizer
-		io.WriterTo
-	}
-	switch format {
-	case "eps":
-		c = vgeps.New(w, h)
-
-	case "jpg", "jpeg":
-		c = vgimg.JpegCanvas{Canvas: vgimg.New(w, h)}
-
-	case "pdf":
-		c = vgpdf.New(w, h)
-
-	case "png":
-		c = vgimg.PngCanvas{Canvas: vgimg.New(w, h)}
-
-	case "svg":
-		c = vgsvg.New(w, h)
-
-	case "tif", "tiff":
-		c = vgimg.TiffCanvas{Canvas: vgimg.New(w, h)}
-
-	default:
-		return nil, fmt.Errorf("unsupported format: %q", format)
+	c, err := draw.NewFormattedCanvas(w, h, format)
+	if err != nil {
+		return nil, err
 	}
 	p.Draw(draw.New(c))
-
 	return c, nil
 }
 
