@@ -91,9 +91,10 @@ func TestTile(t *testing.T) {
 			},
 		},
 	}
-	for j, row := range tiles {
-		for i, tile := range row {
+	for j := 0; j < tiles.Rows; j++ {
+		for i := 0; i < tiles.Cols; i++ {
 			str := "row %d col %d unexpected result: %+v != %+v"
+			tile := tiles.At(j, i)
 			if tile.Rectangle != rectangles[j][i] {
 				t.Errorf(str, j, i, tile.Rectangle, rectangles[j][i])
 			}

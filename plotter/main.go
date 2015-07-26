@@ -10,7 +10,6 @@ package main
 import (
 	"fmt"
 	"image/color"
-	"io"
 	"log"
 	"math"
 	"math/rand"
@@ -59,11 +58,6 @@ var formats = []string{
 	"jpg",
 }
 
-type canvasWriter interface {
-	vg.CanvasSizer
-	io.WriterTo
-}
-
 func main() {
 	//for _, ex := range examples {
 	//	for _, f := range formats {
@@ -73,14 +67,19 @@ func main() {
 	//		}
 	//	}
 	//}
+	const (
+		nrows = 4
+		ncols = 5
+	)
 	for _, f := range formats {
-		c, err := draw.NewFormattedCanvas(4*5*vg.Inch, 4*4*vg.Inch, f)
+		c, err := draw.NewFormattedCanvas(10*ncols*vg.Centimeter,
+			10*nrows*vg.Centimeter, f)
 		if err != nil {
 			log.Fatal(err)
 		}
 		dc := draw.New(c)
 		const (
-			p     = 0.5 * vg.Inch
+			p     = 1 * vg.Centimeter
 			nrows = 4
 			ncols = 5
 		)
@@ -90,7 +89,7 @@ func main() {
 			for i := 0; i < ncols; i++ {
 				if ii < len(examples) {
 					ex := examples[ii]
-					ex.p.Draw(tiles[j][i])
+					ex.p.Draw(tiles.At(j, i))
 					if err != nil {
 						log.Fatalf("failed to draw tile for  %s.%s: %v", ex.name, f, err)
 					}

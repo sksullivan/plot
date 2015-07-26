@@ -317,14 +317,16 @@ func (c *Canvas) Y(y float64) vg.Length {
 // Crop returns a new Canvas corresponding to the receiver
 // area with the given number of inches added to the minimum
 // and maximum x and y values of the Canvas's Rectangle.
-func (c Canvas) Crop(minx, miny, maxx, maxy vg.Length) Canvas {
+// Note that cropping the right and top sides of the canvas
+// requires specifying negative values of xmaxcrop and ymaxcrop.
+func (c Canvas) Crop(xmincrop, ymincrop, xmaxcrop, ymaxcrop vg.Length) Canvas {
 	minpt := Point{
-		X: c.Min.X + minx,
-		Y: c.Min.Y + miny,
+		X: c.Min.X + xmincrop,
+		Y: c.Min.Y + ymincrop,
 	}
 	maxpt := Point{
-		X: c.Max.X + maxx,
-		Y: c.Max.Y + maxy,
+		X: c.Max.X + xmaxcrop,
+		Y: c.Max.Y + ymaxcrop,
 	}
 	return Canvas{
 		Canvas:    vg.Canvas(c),
@@ -332,29 +334,45 @@ func (c Canvas) Crop(minx, miny, maxx, maxy vg.Length) Canvas {
 	}
 }
 
+// Tiles is a holder for subcanvases returned by the Tile function.
+type Tiles struct {
+	Values     []Canvas
+	Rows, Cols int
+}
+
+// At returns the canvas at the given row and column.
+func (t Tiles) At(row, col int) Canvas {
+	return t.Values[row*t.Cols+col]
+}
+
 // Tile returns new Canvases corresponding to the reciever canvas tiled
 // into the given number of rows and columns (row major, starting from the
 // top left corner) where t, b, l, r, h,
 // and w are the padding above, below, to the left, to the right, between rows,
 // and between columns of the tiles, respectively.
-func (c Canvas) Tile(rows, cols int, t, b, l, r, h, w vg.Length) [][]Canvas {
-	o := make([][]Canvas, rows)
-	tileH := (c.Max.Y - c.Min.Y - t - b - vg.Length(rows-1)*h) / vg.Length(rows)
-	tileW := (c.Max.X - c.Min.X - l - r - vg.Length(cols-1)*w) / vg.Length(cols)
+func (c Canvas) Tile(rows, cols int, top, bottom, left, right, padx, pady vg.Length) *Tiles {
+	o := &Tiles{
+		Values: make([]Canvas, rows*cols),
+		Rows:   rows,
+		Cols:   cols,
+	}
+	tileH := (c.Max.Y - c.Min.Y - top - bottom - vg.Length(rows-1)*pady) / vg.Length(rows)
+	tileW := (c.Max.X - c.Min.X - left - right - vg.Length(cols-1)*padx) / vg.Length(cols)
+	ii := 0
 	for j := 0; j < rows; j++ {
-		maxy := c.Max.Y - t - vg.Length(j)*(h+tileH)
-		miny := maxy - tileH
-		o[j] = make([]Canvas, cols)
+		ymax := c.Max.Y - top - vg.Length(j)*(pady+tileH)
+		ymin := ymax - tileH
 		for i := 0; i < cols; i++ {
-			minx := c.Min.X + l + vg.Length(i)*(w+tileW)
-			maxx := minx + tileW
-			o[j][i] = Canvas{
+			xmin := c.Min.X + left + vg.Length(i)*(padx+tileW)
+			xmax := xmin + tileW
+			o.Values[ii] = Canvas{
 				Canvas: vg.Canvas(c),
 				Rectangle: Rectangle{
-					Min: Point{X: minx, Y: miny},
-					Max: Point{X: maxx, Y: maxy},
+					Min: Point{X: xmin, Y: ymin},
+					Max: Point{X: xmax, Y: ymax},
 				},
 			}
+			ii++
 		}
 	}
 	return o
