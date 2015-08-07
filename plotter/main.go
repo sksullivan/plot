@@ -59,14 +59,6 @@ var formats = []string{
 }
 
 func main() {
-	//for _, ex := range examples {
-	//	for _, f := range formats {
-	//		err := ex.p.Save(4*vg.Inch, 4*vg.Inch, ex.name+"."+f)
-	//		if err != nil {
-	//			log.Fatalf("failed to save %s.%s: %v", ex.name, f, err)
-	//		}
-	//	}
-	//}
 	const (
 		nrows = 4
 		ncols = 5

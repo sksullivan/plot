@@ -60,7 +60,7 @@ func TestCrop(t *testing.T) {
 func TestTile(t *testing.T) {
 	r := recorder.New(96)
 	c := NewCanvas(r, 13, 7)
-	tiles := c.Tile(2, 3, 1, 1, 1, 1, 1, 1)
+	tiles := c.Tiles(2, 3, 1, 1, 1, 1, 1, 1)
 	rectangles := [][]Rectangle{
 		{
 			Rectangle{
