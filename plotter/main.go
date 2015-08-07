@@ -75,7 +75,7 @@ func main() {
 			nrows = 4
 			ncols = 5
 		)
-		tiles := dc.Tile(4, 5, p, p, p, p, p, p)
+		tiles := dc.Tiles(4, 5, p, p, p, p, p, p)
 		ii := 0
 		for j := 0; j < nrows; j++ {
 			for i := 0; i < ncols; i++ {
