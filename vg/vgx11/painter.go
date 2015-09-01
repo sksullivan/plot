@@ -28,7 +28,7 @@ import (
 	"image/color"
 	"image/draw"
 
-	"code.google.com/p/freetype-go/freetype/raster"
+	"github.com/golang/freetype/raster"
 	"github.com/BurntSushi/xgbutil/xgraphics"
 )
 
