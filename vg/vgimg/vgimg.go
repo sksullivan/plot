@@ -3,7 +3,7 @@
 // license that can be found in the LICENSE file.
 
 // Package vgimg implements the vg.Canvas interface using
-// draw2d (github.com/llgcode/draw2d)
+// draw2d (github.com/sksullivan/draw2d)
 // as a backend to output raster images.
 package vgimg
 
@@ -19,8 +19,8 @@ import (
 
 	"golang.org/x/image/tiff"
 
-	"github.com/llgcode/draw2d"
-	"github.com/llgcode/draw2d/draw2dimg"
+	"github.com/sksullivan/draw2d"
+	"github.com/sksullivan/draw2d/draw2dimg"
 
 	"github.com/gonum/plot/vg"
 )

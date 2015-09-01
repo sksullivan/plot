@@ -16,7 +16,7 @@ import (
 	"github.com/BurntSushi/xgbutil/xevent"
 	"github.com/BurntSushi/xgbutil/xgraphics"
 	"github.com/BurntSushi/xgbutil/xwindow"
-	"github.com/llgcode/draw2d/draw2dimg"
+	"github.com/sksullivan/draw2d/draw2dimg"
 
 	"github.com/gonum/plot/vg"
 	"github.com/gonum/plot/vg/vgimg"
