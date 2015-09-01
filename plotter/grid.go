@@ -7,9 +7,9 @@ package plotter
 import (
 	"image/color"
 
-	"github.com/gonum/plot"
-	"github.com/gonum/plot/vg"
-	"github.com/gonum/plot/vg/draw"
+	"github.com/sksullivan/plot"
+	"github.com/sksullivan/plot/vg"
+	"github.com/sksullivan/plot/vg/draw"
 )
 
 var (

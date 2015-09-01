@@ -14,7 +14,7 @@ import (
 	"math"
 
 	"bitbucket.org/zombiezen/gopdf/pdf"
-	"github.com/gonum/plot/vg"
+	"github.com/sksullivan/plot/vg"
 )
 
 // Canvas implements the vg.Canvas interface,

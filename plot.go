@@ -10,9 +10,9 @@
 // interface can draw to the data area of a plot using the primitives
 // made available by this package.  Some standard implementations
 // of the Plotter interface can be found in the
-// github.com/gonum/plot/plotter package
+// github.com/sksullivan/plot/plotter package
 // which is documented here:
-// http://godoc.org/github.com/gonum/plot/plotter
+// http://godoc.org/github.com/sksullivan/plot/plotter
 package plot
 
 import (
@@ -24,12 +24,12 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/gonum/plot/vg"
-	"github.com/gonum/plot/vg/draw"
-	"github.com/gonum/plot/vg/vgeps"
-	"github.com/gonum/plot/vg/vgimg"
-	"github.com/gonum/plot/vg/vgpdf"
-	"github.com/gonum/plot/vg/vgsvg"
+	"github.com/sksullivan/plot/vg"
+	"github.com/sksullivan/plot/vg/draw"
+	"github.com/sksullivan/plot/vg/vgeps"
+	"github.com/sksullivan/plot/vg/vgimg"
+	"github.com/sksullivan/plot/vg/vgpdf"
+	"github.com/sksullivan/plot/vg/vgsvg"
 )
 
 var (
@@ -71,9 +71,9 @@ type Plot struct {
 
 // Plotter is an interface that wraps the Plot method.
 // Some standard implementations of Plotter can be
-// found in the github.com/gonum/plot/plotter
+// found in the github.com/sksullivan/plot/plotter
 // package, documented here:
-// http://godoc.org/github.com/gonum/plot/plotter
+// http://godoc.org/github.com/sksullivan/plot/plotter
 type Plotter interface {
 	// Plot draws the data to a draw.Canvas.
 	Plot(draw.Canvas, *Plot)

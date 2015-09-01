@@ -9,10 +9,10 @@ import (
 	"math"
 	"sort"
 
-	"github.com/gonum/plot"
-	"github.com/gonum/plot/palette"
-	"github.com/gonum/plot/vg"
-	"github.com/gonum/plot/vg/draw"
+	"github.com/sksullivan/plot"
+	"github.com/sksullivan/plot/palette"
+	"github.com/sksullivan/plot/vg"
+	"github.com/sksullivan/plot/vg/draw"
 )
 
 // Contour implements the Plotter interface, drawing

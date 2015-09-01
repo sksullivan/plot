@@ -16,11 +16,11 @@ import (
 
 	"github.com/gonum/matrix/mat64"
 
-	"github.com/gonum/plot"
-	"github.com/gonum/plot/palette"
-	"github.com/gonum/plot/plotter"
-	"github.com/gonum/plot/vg"
-	"github.com/gonum/plot/vg/draw"
+	"github.com/sksullivan/plot"
+	"github.com/sksullivan/plot/palette"
+	"github.com/sksullivan/plot/plotter"
+	"github.com/sksullivan/plot/vg"
+	"github.com/sksullivan/plot/vg/draw"
 )
 
 var examples = []struct {

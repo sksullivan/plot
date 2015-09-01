@@ -14,9 +14,9 @@ import (
 	"testing"
 
 	"github.com/gonum/matrix/mat64"
-	"github.com/gonum/plot"
-	"github.com/gonum/plot/palette"
-	"github.com/gonum/plot/vg"
+	"github.com/sksullivan/plot"
+	"github.com/sksullivan/plot/palette"
+	"github.com/sksullivan/plot/vg"
 )
 
 var visualDebug = flag.Bool("visual", false, "output images for benchmarks and test data")

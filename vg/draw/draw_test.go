@@ -5,8 +5,8 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/gonum/plot/vg"
-	"github.com/gonum/plot/vg/recorder"
+	"github.com/sksullivan/plot/vg"
+	"github.com/sksullivan/plot/vg/recorder"
 )
 
 func TestCrop(t *testing.T) {

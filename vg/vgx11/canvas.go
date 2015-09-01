@@ -18,8 +18,8 @@ import (
 	"github.com/BurntSushi/xgbutil/xwindow"
 	"github.com/sksullivan/draw2d/draw2dimg"
 
-	"github.com/gonum/plot/vg"
-	"github.com/gonum/plot/vg/vgimg"
+	"github.com/sksullivan/plot/vg"
+	"github.com/sksullivan/plot/vg/vgimg"
 )
 
 // dpi is the number of dots per inch.

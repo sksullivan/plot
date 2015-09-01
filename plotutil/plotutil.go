@@ -14,8 +14,8 @@ package plotutil
 import (
 	"image/color"
 
-	"github.com/gonum/plot/vg"
-	"github.com/gonum/plot/vg/draw"
+	"github.com/sksullivan/plot/vg"
+	"github.com/sksullivan/plot/vg/draw"
 )
 
 // DefaultColors is a set of colors used by the Color function.

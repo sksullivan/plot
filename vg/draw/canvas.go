@@ -9,7 +9,7 @@ import (
 	"math"
 	"strings"
 
-	"github.com/gonum/plot/vg"
+	"github.com/sksullivan/plot/vg"
 )
 
 // A Canvas is a vector graphics canvas along with

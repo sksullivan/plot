@@ -10,11 +10,11 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/gonum/plot"
-	"github.com/gonum/plot/plotter"
-	"github.com/gonum/plot/plotutil"
-	"github.com/gonum/plot/vg/draw"
-	"github.com/gonum/plot/vg/vgx11"
+	"github.com/sksullivan/plot"
+	"github.com/sksullivan/plot/plotter"
+	"github.com/sksullivan/plot/plotutil"
+	"github.com/sksullivan/plot/vg/draw"
+	"github.com/sksullivan/plot/vg/vgx11"
 )
 
 func main() {

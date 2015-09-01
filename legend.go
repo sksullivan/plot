@@ -5,8 +5,8 @@
 package plot
 
 import (
-	"github.com/gonum/plot/vg"
-	"github.com/gonum/plot/vg/draw"
+	"github.com/sksullivan/plot/vg"
+	"github.com/sksullivan/plot/vg/draw"
 )
 
 // A Legend gives a description of the meaning of different

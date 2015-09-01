@@ -15,7 +15,7 @@ import (
 	"math"
 
 	svgo "github.com/ajstarks/svgo"
-	"github.com/gonum/plot/vg"
+	"github.com/sksullivan/plot/vg"
 )
 
 const (

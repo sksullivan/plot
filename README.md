@@ -1,9 +1,9 @@
-# Gonum Plot  [![Build Status](https://travis-ci.org/gonum/plot.svg?branch=master)](https://travis-ci.org/gonum/plot) [![Coverage Status](https://img.shields.io/coveralls/gonum/plot.svg)](https://coveralls.io/r/gonum/plot) [![GoDoc](https://godoc.org/github.com/gonum/plot?status.svg)](https://godoc.org/github.com/gonum/plot)
+# Gonum Plot  [![Build Status](https://travis-ci.org/gonum/plot.svg?branch=master)](https://travis-ci.org/gonum/plot) [![Coverage Status](https://img.shields.io/coveralls/gonum/plot.svg)](https://coveralls.io/r/gonum/plot) [![GoDoc](https://godoc.org/github.com/sksullivan/plot?status.svg)](https://godoc.org/github.com/sksullivan/plot)
 
 `gonum/plot` is the new, official fork of code.google.com/p/plotinum.
 It provides an API for building and drawing plots in Go.
 *Note* that this new API is still in flux and may change.
-See the wiki for some [example plots](http://github.com/gonum/plot/wiki/Example-plots).
+See the wiki for some [example plots](http://github.com/sksullivan/plot/wiki/Example-plots).
 
 There is a discussion list on Google Groups: gonum-dev@googlegroups.com.
 
@@ -18,12 +18,12 @@ There is a discussion list on Google Groups: gonum-dev@googlegroups.com.
 
 Documentation is available at:
 
-  https://godoc.org/github.com/gonum/plot
+  https://godoc.org/github.com/sksullivan/plot
 
 ## Installation
 
 You can get `gonum/plot` using go get:
 
-`go get github.com/gonum/plot/...`
+`go get github.com/sksullivan/plot/...`
 
 If you write a cool plotter that you think others may be interested in using, please post to the list so that we can link to it in the `gonum/plot` wiki or possibly integrate it into the `plotter` package.
